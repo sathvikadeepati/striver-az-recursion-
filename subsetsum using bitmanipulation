@@ -1,0 +1,19 @@
+class Solution {
+    public List<Integer> subsetSums(int[] arr) {
+        int n = arr.length;
+        List<Integer> sums = new ArrayList<>();
+        for (int mask = 0; mask < (1 << n); mask++) {
+            int sum = 0;
+            for (int i = 0; i < n; i++) {
+                if ((mask & (1 << i)) != 0) {
+                    sum += arr[i];
+                }
+            }
+            sums.add(sum);
+        }
+        Collections.sort(sums);
+        return sums;
+    }
+}
+Time Complexity: O(2n * n),We generate all possible subsets, which is 2n. For each subset, we iterate through the n elements to calculate its sum
+space:o(2n) store all subsets 
